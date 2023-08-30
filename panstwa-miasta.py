@@ -1,5 +1,5 @@
 import random
-
+import time
 
 def play_game():
     categories = {
@@ -28,7 +28,15 @@ def play_game():
             else:
                 prompt = f"Podaj zwierzęta z literą {word[0]}: "
 
+            start_time = time.time()  # Rozpoczęcie odliczania czasu
             answer = input(prompt)
+            end_time = time.time()  # Zakończenie odliczania czasu
+
+            elapsed_time = end_time - start_time
+            if elapsed_time > 15:
+                print("Czas minął! Nie zdążyłeś udzielić odpowiedzi.")
+                return
+
             player_answers[category] = answer
 
         print("\nOdpowiedzi gracza:")
@@ -44,8 +52,6 @@ def play_game():
         play_again = input("\nCzy chcesz zagrać ponownie? (t/n): ")
         if play_again.lower() != "t":
             print("Dziękujemy za grę!")
-            break
-
 
 if __name__ == "__main__":
     play_game()
